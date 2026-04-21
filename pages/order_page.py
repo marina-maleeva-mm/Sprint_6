@@ -16,15 +16,13 @@ class OrderPage(BasePage):
 
     @allure.step("Заполнить поле 'Адрес'")
     def set_address(self, address):
-        self.send_keys_to_field(OrderPageLocators.FIELD_ADRESS, address)
+        self.send_keys_to_field(OrderPageLocators.FIELD_ADDRESS, address)
 
     @allure.step("Выбрать станцию метро: {station_name}")
     def select_metro_station(self, station_name):
         self.click_on_locator(OrderPageLocators.FIELD_METRO)
-        if station_name == "Бульвар Рокоссовского":
-            self.click_on_locator(OrderPageLocators.METRO_STATION_1)
-        elif station_name == "Черкизовская":
-            self.click_on_locator(OrderPageLocators.METRO_STATION_2)
+        metro_locator = OrderPageLocators.METRO_STATION.format(station=station_name)
+        self.find_element_with_dynamic_xpath(metro_locator).click()
 
     @allure.step("Заполнить поле 'Телефон'")
     def enter_phone(self, phone):

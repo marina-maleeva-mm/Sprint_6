@@ -12,14 +12,17 @@ class TestLogo:
         main_page.go_to_url(Urls.ORDER_PAGE)
         main_page.click_scooter_logo()
         
+
         assert Urls.MAIN_PAGE in main_page.get_current_url()
 
-    @allure.title("Проверка перехода на страницу 'Дзен' по логотипу 'Яндекс'")
+    @allure.title("Проверка перехода на страницу 'Dzen' по логотипу 'Яндекс'")
     def test_click_ya_logo_redirects_dzen(self, driver):
         main_page = MainPage(driver)
         main_page.accept_cookies()
         main_page.click_yandex_logo()
         main_page.switch_to_next_tab()
+        main_page.wait_for_dzen_opened()
         
-        assert main_page.is_dzen_opened()
+        assert "dzen.ru" in main_page.get_current_url()
+        
         

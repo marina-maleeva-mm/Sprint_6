@@ -5,10 +5,9 @@ class OrderPageLocators:
     # ФОРМА "Для кого самокат"
     FIELD_FIRST_NAME = (By.XPATH, '//input[@placeholder="* Имя"]') # Поле "Имя"
     FIELD_LAST_NAME = (By.XPATH, '//input[@placeholder="* Фамилия"]') # Поле "Фамилия"
-    FIELD_ADRESS = (By.XPATH, '//input[@placeholder="* Адрес: куда привезти заказ"]') # Поле "Адрес: куда привезти"
+    FIELD_ADDRESS = (By.XPATH, '//input[@placeholder="* Адрес: куда привезти заказ"]') # Поле "Адрес: куда привезти"
     FIELD_METRO = (By.XPATH, '//input[@placeholder="* Станция метро"]') # Поле "Станция метро"
-    METRO_STATION_1 = (By.XPATH, '//div[text() = "Бульвар Рокоссовского"]') # Станция 1 Бульвар Рокоссовского
-    METRO_STATION_2 = (By.XPATH, '//div[text() = "Черкизовская"]') # Станция 2 Черкизовская
+    METRO_STATION = '//div[@class="select-search__select"]//div[text()="{station}"]' # Станция метро
     FIELD_PHONE = (By.XPATH, '//input[@placeholder="* Телефон: на него позвонит курьер"]') # Поле "Телефон: на него позвонит курьер"
 
     BUTTON_NEXT = (By.XPATH, './/button[text()="Далее"]') # Кнопка "Далее"
@@ -22,7 +21,7 @@ class OrderPageLocators:
     GREY_CHECKBOX = (By.ID, 'grey') # Цвет - "серая безысходность"
     FIELD_MESSAGE = (By.XPATH, '//input[@placeholder="Комментарий для курьера"]') # Поле "Комментарий для курьера"
 
-    BUTTON_ORDER = (By.XPATH, "(.//button[text() = 'Заказать'])[2]") # Кнопка "Заказать"
+    BUTTON_ORDER = (By.XPATH, "//div[contains(@class, 'Order_Buttons')]//button[contains(@class, 'Button_Middle') and text()='Заказать']") # Кнопка "Заказать"
 
     # Окно "Хотите оформить заказ?"
     BUTTON_NO = (By.XPATH, './/button[text()="Нет"]') # Кнопка "Нет"

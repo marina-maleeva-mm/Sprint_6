@@ -9,23 +9,20 @@ class TestScooterOrder:
     
     @allure.title("Проверка оформления заказа самоката")
     @pytest.mark.parametrize(
-        "order_button, user_data",
+        "click_order_button, user_data",
         [
-            ("up", User_1),
-            ("low", User_2)
+            pytest.param(MainPage.click_button_order_up, User_1, id="order_from_upper_button"),
+            pytest.param(MainPage.click_button_order_low, User_2, id="order_from_lower_button"),
         ]
     )
     
-    def test_scooter_order(self, driver, order_button, user_data):
+    def test_scooter_order(self, driver, click_order_button, user_data):
         main_page = MainPage(driver)
         order_page = OrderPage(driver)
 
+        main_page.open()
         main_page.accept_cookies()
-
-        if order_button == "up":
-            main_page.click_button_order_up()
-        elif order_button == "low":
-            main_page.click_button_order_low()
+        click_order_button(main_page)
 
         order_page.complete_scooter_order(user_data)
 

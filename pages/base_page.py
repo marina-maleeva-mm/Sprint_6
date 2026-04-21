@@ -1,6 +1,7 @@
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.by import By
 
 
 class BasePage:
@@ -45,4 +46,21 @@ class BasePage:
     @allure.step('Перейти на другую вкладку')
     def switch_to_next_tab(self):
         self.driver.switch_to.window(self.driver.window_handles[1])
+
+    @allure.step("Проверить, что элемент виден")
+    def is_element_visible(self, locator):
+        elements = self.driver.find_elements(*locator)
+        return len(elements) > 0 and elements[0].is_displayed()
+
+    @allure.step("Получить текст элемента")
+    def get_text(self, locator):
+        return self.find_visible_element(locator).text
+
+    @allure.step("Найти элемент по динамическому XPath")
+    def find_element_with_dynamic_xpath(self, xpath):
+        return self.wait.until(expected_conditions.visibility_of_element_located((By.XPATH, xpath)))
+
+    @allure.step("Открыть страницу")
+    def open(self):
+        self.driver.get(self.url)
         
