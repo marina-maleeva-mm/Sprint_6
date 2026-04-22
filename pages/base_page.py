@@ -63,4 +63,8 @@ class BasePage:
     @allure.step("Открыть страницу")
     def open(self):
         self.driver.get(self.url)
+
+    @allure.step("Дождаться, что URL содержит текст")
+    def wait_for_url_contains(self, text):
+        self.wait.until(expected_conditions.url_contains(text))
         

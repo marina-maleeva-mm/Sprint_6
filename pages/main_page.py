@@ -2,8 +2,6 @@ import allure
 from data import Urls
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
 class MainPage(BasePage):
@@ -47,5 +45,5 @@ class MainPage(BasePage):
         self.click_on_locator(MainPageLocators.LOGO_SCOOTER)
 
     @allure.step("Проверить, что открыта страница Дзена")
-    def wait_for_dzen_opened(self, timeout=10):
-        WebDriverWait(self.driver, timeout).until(expected_conditions.url_contains("dzen.ru"))
+    def wait_for_dzen_opened(self):
+        self.wait_for_url_contains("dzen.ru")
